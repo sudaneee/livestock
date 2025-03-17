@@ -39,10 +39,11 @@
                         
                         <div class="col-md-12">
                             <div class="video-img">
-                                <a href="{{ video.get_video_url }}&amp;width=700" data-rel="prettyPhoto" title="{{ video.title }}">
+                                <a href="https://www.youtube.com/embed/{{ video.video_id }}?autoplay=1" data-fancybox>
                                     <i class="fas fa-play"></i>
                                 </a>
                                 <img src="{{ video.get_thumbnail_url }}" alt="YouTube Thumbnail">
+                                
                             </div>
                         </div>
                     </div>
@@ -324,5 +325,7 @@
 </div>
 <!--Partner Logos Section End-->
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 {% endblock %}
