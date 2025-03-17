@@ -1,0 +1,328 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+<!--Slider Start-->
+<section id="home-slider" class="owl-carousel owl-theme wf100">
+    {% for slider in sliders %}
+    <div class="item">
+        <div class="slider-caption h3slider">
+            <div class="container">
+                <strong>{{ slider.title }}</strong>
+                {% comment %} <h1>{{ slider.description }}</h1> {% endcomment %}
+                <a href="{{ slider.link }}">Find Out More</a>
+            </div>
+        </div>
+        {% if slider.image %}
+        <img src="{{ slider.image.url }}" alt="{{ slider.title }}">
+        {% else %}
+        <img src="{% static 'src/images/default-slider.jpg' %}" alt="Default Slider Image">
+        {% endif %}
+    </div>
+    {% endfor %}
+</section>
+<!--Slider End-->
+
+
+
+
+<!--Service Area Start-->
+<section class="donation-join wf100 gallery">
+    <div class="container">
+        <h5 class="text-center m-2 p-2">The Ministry in Action</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="h3testimonials" class="owl-carousel owl-theme p-3">
+                    
+                    {% for video in videos %}
+                    <div class="item">
+                        
+                        <div class="col-md-12">
+                            <div class="video-img">
+                                <a href="{{ video.get_video_url }}&amp;width=700" data-rel="prettyPhoto" title="{{ video.title }}">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                                <img src="{{ video.get_thumbnail_url }}" alt="YouTube Thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Service Area End-->
+
+
+
+
+<section class="h3-about wf100 p80">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                {% if about.image %}
+                <img src="{{ about.image.url }}" width="500px" alt="About Us">
+                {% else %}
+                <img src="{% static 'src/images/default-about.jpg' %}" alt="Default About Image">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="h3-aboutxt">
+                    <h1>About the  <span>Ministry</span></h1>
+                    <p class="text-justify">{{ about.description }}</p>
+                    <a href="{% url 'about' %}" class="btn-success p-3 mt-1" >Learn More</a>
+                    <ul class="counter">
+                        <li>
+                            <p class="counter-count">{{ about.stats.livestock_vaccinated }}</p>
+                            <p class="ctxt">Livestock Vaccinated</p>
+                        </li>
+                        <li>
+                            <p class="counter-count">{{ about.stats.farmers_trained }}</p>
+                            <p class="ctxt">Farmers Trained</p>
+                        </li>
+                        <li>
+                            <p class="counter-count">{{ about.stats.improved_breeds_distributed }}</p>
+                            <p class="ctxt">Improved Breeds Distributed</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--About Section End-->
+
+<!--Our Core Projects Start-->
+<section class="our-core-projects wf100 p80">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="h3-stitle">
+                    <h1>Our Core Projects</h1>
+                    <p>We are actively engaged in various projects aimed at enhancing livestock development, improving animal health, and ensuring sustainable livestock production.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="core-projects-slider" class="owl-carousel owl-theme">
+                    {% for project in projects %}
+                    <div class="item">
+                        <div class="ocp-box">
+                            <div class="ocp-thumb">
+                                <a href="{{ project.link }}"><i class="fas fa-link"></i></a>
+                                {% if project.image %}
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                                {% else %}
+                                <img src="{% static 'src/images/default-project.jpg' %}" alt="Default Project Image">
+                                {% endif %}
+                            </div>
+                            <h5><a href="{{ project.link }}">{{ project.title }}</a></h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 text-center">
+                <a href="" class="btn-success p-3 mt-1" >More Projects</a>
+            </div>
+        </div>
+ 
+        
+    </div>
+    
+</section>
+<!--Our Core Projects End-->
+
+<!--News and Events Start-->
+<section class="news-events wf100 p80">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>News & Blog Articles</h1>
+                {% for news_item in news %}
+                <div class="news-block mb30">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="news-thumb">
+                                <a href="{% url 'news-details' news_item.id %}"><i class="fas fa-link"></i></a>
+                                {% if news_item.image %}
+                                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                                {% else %}
+                                <img src="{% static 'src/images/default-news.jpg' %}" alt="Default News Image">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="news-txt">
+                                <h4><a href="{{ news_item.link }}">{{ news_item.title }}</a></h4>
+                                <ul class="news-meta">
+                                    <li><i class="fas fa-calendar-alt"></i> {{ news_item.date }}</li>
+                                    <li><i class="fas fa-comments"></i> {{ news_item.comment_count }} Comments</li>
+                                </ul>
+                                <p>{{ news_item.description }}</p>
+                                <a class="rm" href="{% url 'news-details' news_item.id %}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <!-- Events Start -->
+                <div class="h3-events">
+                    <h1>Upcoming Events</h1>
+                    <div id="h3-events" class="owl-carousel owl-theme">
+                        {% if events %}
+                            {% for event in events %}
+                            <div class="item">
+                                <div class="event-box">
+                                    <div class="event-thumb">
+                                        <a href="{{ event.link }}"><i class="fas fa-link"></i></a>
+                                        {% if event.image %}
+                                            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                                        {% else %}
+                                            <img src="{% static 'src/images/default-event.jpg' %}" alt="Default Event Image">
+                                        {% endif %}
+                                    </div>
+                                    <div class="event-txt">
+                                        <ul class="event-meta">
+                                            <li><i class="far fa-calendar-alt"></i> {{ event.date }}</li>
+                                            <li><i class="far fa-clock"></i> {{ event.time }}</li>
+                                        </ul>
+                                        <h4><a href="{{ event.link }}">{{ event.title }}</a></h4>
+                                        <p><i class="fas fa-map-marker-alt"></i> {{ event.location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">No upcoming events at the moment.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Events End -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-3 text-center">
+                <a href="{% url 'news-list' %}" class="btn-success p-3 mt-1" >More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--News and Events End-->
+
+<!--Team Section Start-->
+<section class="wf100 p80 h3teams-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="h3-stitle text-center">
+                    <h1>Our Team</h1>
+                    <p>We are dedicated to various projects in the livestock sector, providing comprehensive solutions for sustainable animal farming, health management, and productivity enhancement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for team_member in team %}
+            <div class="col-md-4 col-sm-4">
+                <div class="team-box">
+                    {% if team_member.image %}
+                    <img src="{{ team_member.image.url }}" style="height: 500px;" alt="{{ team_member.name }}">
+                    {% else %}
+                    <img src="{% static 'src/images/default-team.jpg' %}" alt="Default Team Image">
+                    {% endif %}
+                    <div class="team-info">
+                        <h3 style="font-size: 26px;">{{ team_member.name }}</h3>
+                        <p>{{ team_member.role }}</p>
+                        <ul>
+                            {% for platform, link in team_member.social_links.items %}
+                            <li><a href="{{ link }}"><i class="fab fa-{{ platform }}"></i></a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-3 text-center">
+                <a href="" class="btn-success p-3 mt-1" >More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Team Section End-->
+
+<!--Testimonials Start-->
+<section class="h3testimonials wf100 p80">
+    <h1 class="text-center">What People Says</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="h3testimonials" class="owl-carousel owl-theme">
+                    {% for testimonial in testimonials %}
+                    <div class="item">
+                        <p>{{ testimonial.quote }}</p>
+                        <div class="tuser">
+                            {% if testimonial.image %}
+                            <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}">
+                            {% else %}
+                            <img src="{% static 'src/images/default-testimonial.jpg' %}" alt="Default Testimonial Image">
+                            {% endif %}
+                            <strong>{{ testimonial.name }}</strong>
+                            <span>{{ testimonial.role }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Testimonials End-->
+
+<!--Instagram Start-->
+<div class="instagram p80">
+    <ul>
+        {% for insta_image in instagram_images %}
+        <li>
+            <a href="#"><i class="fas fa-search"></i></a>
+            {% if insta_image %}
+            <img src="{{ insta_image.url }}" alt="Instagram Image">
+            {% else %}
+            <img src="{% static 'src/images/default-instagram.jpg' %}" alt="Default Instagram Image">
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<!--Instagram End-->
+
+<!--Partner Logos Section Start-->
+<div class="partner-logos home3 wf100">
+    <div class="container">
+        <div id="partner-logos" class="owl-carousel owl-theme">
+            {% for partner in partners %}
+            <div class="item">
+                {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
+                {% else %}
+                <img src="{% static 'src/images/default-partner.jpg' %}" alt="Default Partner Image">
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--Partner Logos Section End-->
+
+
+{% endblock %}

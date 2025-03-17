@@ -1,0 +1,73 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Inner Header Start -->
+<section class="wf100 p100 inner-header">
+    <div class="container">
+        <h1>Gallery</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- Gallery Start -->
+<div class="gallery wf100 p80">
+    <div class="container">
+        <div class="row">
+            <!-- Loop through gallery images -->
+            {% for image in gallery %}
+            <!-- Image Box Start -->
+            <div class="col-md-6 col-sm-6">
+                <div class="gallery-img">
+                    <a href="{{ image.image.url }}" data-rel="prettyPhoto[gallery1]" title="{{ image.title }}">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                </div>
+            </div>
+            <!-- Image Box End -->
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gt-pagination">
+                    <nav>
+                        <ul class="pagination">
+                            {% if gallery.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ gallery.previous_page_number }}" aria-label="Previous">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for num in gallery.paginator.page_range %}
+                            <li class="page-item {% if gallery.number == num %}active{% endif %}">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endfor %}
+
+                            {% if gallery.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ gallery.next_page_number }}" aria-label="Next">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gallery End -->
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+
+<header class="header-style-3 wf100">
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><i class="fas fa-map-marker-alt"></i>Office of the SGF 3 Arms Zone Maitama, Abuja.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="topbar-social">
+                        <li class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        {% comment %} <li><a class="acclink" href="#"><i class="far fa-user-circle"></i> My Account</a></li> {% endcomment %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h3-logo-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <div class="logo"><a href="{% url 'home' %}"><img src="{{header_logo.image.url}}" alt=""></a></div>
+                </div>
+                <div class="col-md-4 col-sm-8">
+                    <ul class="header-contact">
+                        <li><i class="fas fa-phone"></i>+234 7060936935</li>
+                        <li><i class="fas fa-envelope"></i>info@fmld.gov.ng</li>
+                    </ul>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    
+                    <form class="search-form">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <button class="sbtn" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navrow">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                               
+                                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About us</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Agencies </a>
+                                    <ul class="dropdown-menu" >
+                                        {% for agency in agencies %}
+                                        <li><a href="{% url 'agency-details' agency.id %}">{{agency.name}}</a> </li>
+                               
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'news-list' %}">News & Updates</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'gallery-list' %}">Gallery</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'media-list' %}">Media Hub</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact us</a></li>
+                                <!-- Add other navigation items here -->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

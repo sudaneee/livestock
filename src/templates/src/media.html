@@ -1,0 +1,185 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Inner Header Start -->
+<section class="wf100 p100 inner-header">
+    <div class="container">
+        <h1>Media Hub</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+</section>
+<!-- Inner Header End -->
+
+<!-- Videos Section Start -->
+<section class="wf100 p80 media">
+    <div class="container">
+        <h2>Videos</h2>
+        <div class="row">
+            <!-- Loop through video items -->
+            {% for video in videos %}
+            <div class="col-md-6">
+                <div class="media-item">
+                    <h3>{{ video.title }}</h3>
+                    <div class="video-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ video.youtube_link|slice:'17:' }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Video Pagination -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gt-pagination">
+                    <nav>
+                        <ul class="pagination">
+                            {% if videos.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?video_page={{ videos.previous_page_number }}" aria-label="Previous">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for num in videos.paginator.page_range %}
+                            <li class="page-item {% if videos.number == num %}active{% endif %}">
+                                <a class="page-link" href="?video_page={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endfor %}
+
+                            {% if videos.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?video_page={{ videos.next_page_number }}" aria-label="Next">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Videos Section End -->
+
+<!-- Audio Section Start -->
+<section class="wf100 p80 media">
+    <div class="container">
+        <h2>Audio Jingles</h2>
+        <div class="row">
+            <!-- Loop through audio items -->
+            {% for audio_item in audio %}
+            <div class="col-md-6">
+                <div class="media-item">
+                    <h3>{{ audio_item.title }}</h3>
+                    <div class="audio-container">
+                        <audio controls style="width: 100%;">
+                            <source src="{{ audio_item.audio_file.url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Audio Pagination -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gt-pagination">
+                    <nav>
+                        <ul class="pagination">
+                            {% if audio.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?audio_page={{ audio.previous_page_number }}" aria-label="Previous">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for num in audio.paginator.page_range %}
+                            <li class="page-item {% if audio.number == num %}active{% endif %}">
+                                <a class="page-link" href="?audio_page={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endfor %}
+
+                            {% if audio.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?audio_page={{ audio.next_page_number }}" aria-label="Next">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Audio Section End -->
+
+
+<style>
+    /* Add this to your CSS file */
+    .media-item {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+    
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+    }
+    
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .audio-container {
+        margin-top: 15px;
+    }
+    
+    .gt-pagination .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    
+    .gt-pagination .page-item {
+        margin: 0 5px;
+    }
+    
+    .gt-pagination .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+    
+    .gt-pagination .page-link {
+        color: #007bff;
+        border: 1px solid #dee2e6;
+        padding: 5px 10px;
+    }
+    
+    .gt-pagination .page-link:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+{% endblock %}

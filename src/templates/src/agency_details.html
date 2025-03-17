@@ -1,0 +1,51 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!--Inner Header Start-->
+         <section class="wf100 p100 inner-header">
+            <div class="container">
+               <h1>{{agency.name}}</h1>
+               <ul>
+                  <li><a href="#">Home</a></li>
+                  {% comment %} <li><a href="#">{{agency.name}}</a></li> {% endcomment %}
+               </ul>
+            </div>
+         </section>
+         <!--Inner Header End--> 
+                  <!--Blog Start-->
+                  <section class="wf100 p80 blog">
+                    <div class="blog-details">
+                       <div class="container">
+                          <div class="row">
+                             <div class="col-lg-12 col-md-12">
+                                <!--Blog Single Content Start-->
+                                <div class="blog-single-content">
+                                    
+                                    {% if agency.image %}
+                                   <div class="blog-single-thumb"><img src="{{agency.image.url}}" alt=""></div>
+                                   {% else %}
+                                   <div class="blog-single-thumb"><img src="{% static 'src/images/default-project.jpg' %}" alt=""></div>
+                                   {% endif %}
+                                   <h3>{{agency.name}}</h3>
+
+                                   <p>{{agency.content}}</p>
+                                    
+                           
+                       
+                     
+                                </div>
+                                <!--Blog Single Content End--> 
+                             </div>
+                             
+                                   </div>
+                                   <!--Widget End--> 
+                       
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </section>
+                 <!--Blog End--> 
+{% endblock %}

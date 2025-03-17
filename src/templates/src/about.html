@@ -1,0 +1,210 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+         <!--Inner Header Start-->
+         <section class="wf100 p100 inner-header">
+            <div class="container">
+               <h1>About Us</h1>
+               <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About Us</a></li>
+               </ul>
+            </div>
+         </section>
+         <!--Inner Header End--> 
+        <!--About Section Start-->
+        <section class="h3-about wf100 p80">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {% if about.image %}
+                        <img src="{{ about.image.url }}" width="500px" alt="About Us">
+                        {% else %}
+                        <img src="{% static 'src/images/default-about.jpg' %}" alt="Default About Image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h3-aboutxt">
+                            <h1>About the  <span>Ministry</span></h1>
+                            <p class="text-justify">{{ about.description }}</p>
+                            
+                            <ul class="counter">
+                                <li>
+                                    <p class="counter-count">{{ about.stats.livestock_vaccinated }}</p>
+                                    <p class="ctxt">Livestock Vaccinated</p>
+                                </li>
+                                <li>
+                                    <p class="counter-count">{{ about.stats.farmers_trained }}</p>
+                                    <p class="ctxt">Farmers Trained</p>
+                                </li>
+                                <li>
+                                    <p class="counter-count">{{ about.stats.improved_breeds_distributed }}</p>
+                                    <p class="ctxt">Improved Breeds Distributed</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--About Section End-->
+
+                 <!--Service Area Start-->
+                 <section class="donation-join wf100">
+                    <div class="container">
+                       <div class="row">
+                          <div class="col-md-6">
+                             <div class="donation-wrap">
+                                <h2>Our Mandate</h2>
+                                <p class="text-justify">{{mandate.content}}</p>
+                             </div>
+                          </div>
+                          <div class="col-md-3 col-sm-6">
+                             <div class="volbox">
+                                
+                                <h5>Our Vision</h5>
+                                <p class="text-justify"> {{vision.content}} </p>
+                                
+                             </div>
+                          </div>
+                          <div class="col-md-3 col-sm-6">
+                             <div class="volbox nob">
+                                
+                                <h5>Our Mission</h5>
+                                <p class="text-justify"> {{mission.content }}</p>
+                                
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </section>
+                 <!--Service Area End--> 
+
+
+                 <!--Service Area Start-->
+                 <section class="donation-join wf100">
+                    <div class="container">
+                       <div class="row">
+                          <div class="col-md-12">
+                             <div class="donation-wrap">
+                                <h2 class="text-center">Our Structure</h2>
+                                <p class="text-justify">
+                                    The Federal Ministry of Livestock Development is responsible for formulating and implementing policies 
+                                    to enhance livestock productivity, sustainability, and economic growth. The Ministry operates through 
+                                    13 specialized departments, including seven (7) technical departments and six (6) common services 
+                                    departments, alongside a Special Duties Office, three (3) units, and seven (7) parastatals/agencies.
+                                </p>
+                                <ol type="I">
+                                    <li><strong>Ruminants and Monogastric Department:</strong> The Department functions in the formation and implementation of policy that enhances the productivity and sustainability of dairy, beef, sheep, cattle, goats, pig, poultry, and other micro livestock sectors. It focuses on improving breeding, managing, practicing, processing, and marketing livestock products for economic growth.</li>
+                                    
+                                    <li><strong>Ranch and Pastoral Resources Development:</strong> The Department formulates and implements policies for the development and sustainable management of grazing reserves, ranches, and stock routes. It also develops strategies to promote efficient land use within grazing reserves, improving livestock productivity and reducing conflicts between farmers and pastoralists.</li>
+                                    
+                                    <li><strong>Pest Control Services:</strong> This Department formulates and implements policies for preventing and controlling transboundary pests and vectors of economic and public health importance. It is also responsible for sensitization, advocacy, and monitoring of pesticides used in livestock production.</li>
+                                    
+                                    <li><strong>Quality Assurance & Certification:</strong> The Department initiates policy direction on safety guidelines for livestock products to protect animal and public health. It also issues International Veterinary Certificates (export and import permits) in compliance with the World Organization for Animal Health (WOAH).</li>
+                                    
+                                    <li><strong>Veterinary Public Health and Epidemiology:</strong> This Department formulates policies and regulations on veterinary public health, ensuring good hygienic animal processing practices and safe delivery of animal products to consumers. It aims to protect public health from animal-borne diseases.</li>
+                                    
+                                    <li><strong>Livestock Extension & Business Development:</strong> This Department develops policies and strategies to promote livestock extension services and business development for farmers, contributing to national food security and economic growth.</li>
+                                    
+                                    <li><strong>Human Resources Management:</strong> Responsible for providing administrative guidelines to maximize productivity by optimizing employee effectiveness. It handles recruitment, training, staff performance evaluation, workplace culture, dispute resolution, and wellness programs.</li>
+                                    
+                                    <li><strong>Planning, Research & Statistics:</strong> This Department oversees corporate and strategic planning, research activities, and statistical data collection. It supports livestock sector development through research on new technologies and breeding processes.</li>
+                                    
+                                    <li><strong>Finance & Accounts:</strong> Responsible for financial planning, budgeting, and fund management. It ensures financial stability, transparency, and fraud prevention while supporting management in financial decision-making.</li>
+                                    
+                                    <li><strong>General Services:</strong> Manages the Ministry’s facilities, transportation, logistics, and workplace safety, ensuring smooth operational services.</li>
+                                    
+                                    <li><strong>Procurement:</strong> Oversees negotiation, purchasing, and stock management of goods and services. It ensures quality, cost efficiency, and adherence to legal and ethical procurement standards.</li>
+                                    
+                                    <li><strong>Special Duties Office:</strong> Handles urgent issues, unforeseen situations, and strategic tasks requiring special attention. It also manages special projects and acts as a bridge between departments.</li>
+                                    
+                                    <li><strong>Reform Coordination & Innovation Service:</strong> Drives policy reforms and innovative initiatives, ensuring continuous improvement, modernization, and efficiency within the Ministry.</li>
+                                    
+                                    <li><strong>Press and Public Relations Unit:</strong> Disseminates accurate information about government policies and programs related to the livestock sector. It handles media relations, press releases, social media engagement, and public awareness campaigns.</li>
+                                    
+                                    <li><strong>Internal Audit:</strong> Ensures accountability, financial discipline, and compliance with regulations by identifying risks, detecting irregularities, and recommending corrective actions to safeguard public funds.</li>
+                                    
+                                    <li><strong>Legal Unit:</strong> Provides expert legal guidance, ensuring all Ministry activities align with national laws. It advises on contracts, agreements, and legislation affecting the livestock sector while ensuring regulatory compliance.</li>
+                                </ol>
+                                
+                             </div>
+                          </div>
+
+                       </div>
+                    </div>
+                 </section>
+                 <!--Service Area End--> 
+                 <!--Service Area Start-->
+                 <section class="donation-join wf100">
+                    <div class="container">
+                       <div class="row">
+                          <div class="col-md-12">
+                             <div class="donation-wrap">
+                                <h2 class="text-center">Our Function</h2>
+                                <p class="text-justify">
+                                    The core responsibilities of the Ministry include the following:
+                                </p>
+                      
+                                <ol type="i">
+                                    <li>Facilitate the expeditious resolution of farmers/herders conflicts.</li>
+                                    <li>Increase the productivity and resilience of livestock systems to ensure long-term sustainability.</li>
+                                    <li>Improve animal health systems to minimize the impact of livestock diseases on productivity and public health.</li>
+                                    <li>Promote climate-smart livestock production to enhance sustainability in the face of climate change.</li>
+                                    <li>Encourage innovation, technology adoption, and entrepreneurship among livestock value chain actors.</li>
+                                    <li>Create enabling conditions and incentives to attract private-sector investments across the livestock value chain.</li>
+                                    <li>Enhance market access and value addition through strategic marketing initiatives, infrastructure development, and compliance with global standards.</li>
+                                    <li>Provide incentives for youth and women participation in the livestock sector as a means of job creation, improved livelihoods, and wealth generation.</li>
+                                </ol>
+                                
+                                
+                             </div>
+                          </div>
+
+                       </div>
+                    </div>
+                 </section>
+                 <!--Service Area End--> 
+
+<!--Team Section Start-->
+<section class="wf100 p80 h3teams-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="h3-stitle text-center">
+                    <h1>Our Team</h1>
+                    <p>We are dedicated to various projects in the livestock sector, providing comprehensive solutions for sustainable animal farming, health management, and productivity enhancement.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for team_member in team %}
+            <div class="col-md-4 col-sm-4">
+                <div class="team-box">
+                    {% if team_member.image %}
+                    <img src="{{ team_member.image.url }}" style="height: 500px;" alt="{{ team_member.name }}">
+                    {% else %}
+                    <img src="{% static 'src/images/default-team.jpg' %}" alt="Default Team Image">
+                    {% endif %}
+                    <div class="team-info">
+                        <h3 style="font-size: 26px;">{{ team_member.name }}</h3>
+                        <p>{{ team_member.role }}</p>
+                        <ul>
+                            {% for platform, link in team_member.social_links.items %}
+                            <li><a href="{{ link }}"><i class="fab fa-{{ platform }}"></i></a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+ 
+    </div>
+</section>
+<!--Team Section End-->
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+         <!--Inner Header Start-->
+         <section class="wf100 p100 inner-header">
+            <div class="container">
+               <h1>News & Updates</h1>
+               <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#"></a></li>
+               </ul>
+            </div>
+         </section>
+         <!--Inner Header End--> 
+<!-- Blog Start -->
+<section class="wf100 p80 blog">
+    <div class="container">
+        <div class="row">
+            <!-- Loop through blog posts -->
+            {% for post in news %}
+            <!-- Blog Small Post Start -->
+            <div class="col-md-6">
+                <div class="blog-small-post">
+                    <div class="post-thumb">
+                        <a href="{% url 'news-details' post.id %}"><i class="fas fa-link"></i></a>
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    </div>
+                    <div class="post-txt">
+                        <span class="pdate"><i class="fas fa-calendar-alt"></i> {{ post.date }}</span>
+                        <h5><a href="{% url 'news-details' post.id %}">{{ post.title }}</a></h5>
+                        <p>{{ post.description|truncatewords:20 }}</p>
+                        <a href="{% url 'news-details' post.id %}" class="rm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Small Post End -->
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="gt-pagination">
+            <nav>
+                <ul class="pagination">
+                    {% if news.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news.previous_page_number }}" aria-label="Previous">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in news.paginator.page_range %}
+                    <li class="page-item {% if news.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+
+                    {% if news.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Next">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- Blog End -->
+
+{% endblock %}

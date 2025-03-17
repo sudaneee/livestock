@@ -1,0 +1,97 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Inner Header Start -->
+<section class="wf100 p100 inner-header">
+    <div class="container">
+        <h1>{{ news_item.title }}</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+        </ul>
+    </div>
+</section>
+
+<section class="wf100 p80 blog">
+    <div class="blog-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8">
+                    <!-- Blog Single Content Start -->
+                    <div class="blog-single-content">
+                        <div class="blog-single-thumb"><img src="{{ news_item.image.url }}" alt=""></div>
+                        <h3>{{ news_item.title }}</h3>
+                        <ul class="post-meta">
+                            <li><i class="fas fa-calendar-alt"></i> {{ news_item.date }}</li>
+                            <li><i class="fas fa-comments"></i> {{ comment_count }} Comments</li>
+                        </ul>
+                        <p>{{ news_item.description }}</p>
+                    </div>
+                    <!-- Blog Single Content End -->
+                </div>
+
+                <!-- Sidebar Start -->
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar">
+                        <!-- Widget Start -->
+                        <div class="side-widget">
+                            <h5>News & Articles</h5>
+                            <ul class="lastest-products">
+                                {% for new in news %}
+                                <li> <img src="{{ new.image.url }}" width="100px" alt=""> <strong><a href="{% url 'news-details' new.id %}">{{ new.title }}</a></strong> <span class="pdate"><i class="fas fa-calendar-alt"></i>{{ new.date }}</span> </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- Widget End -->
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+
+                <!-- Author Comments Start -->
+                <div class="post-comments wf100">
+                    <h4>Comments on Post</h4>
+                    <ul class="comments">
+                        {% for comment in comments %}
+                        <li class="comment">
+                            <div class="comment-txt">
+                                <h6>{{ comment.name }}</h6>
+                                <p>{{ comment.text }}</p>
+                                <ul class="comment-time">
+                                    <li>Posted: {{ comment.created_at }}</li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Author Comments End -->
+
+                <!-- Leave a Comment Start -->
+                <div class="wf100 comment-form">
+                    <h4>Leave a Comment</h4>
+                    <form method="post">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="w3">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                            </li>
+                            <li class="w3">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                            </li>
+                            <li class="full">
+                                <textarea name="text" class="form-control" placeholder="Write Comments" required></textarea>
+                            </li>
+                            <li class="full">
+                                <button type="submit" class="post-btn">Post Your Comment</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <!-- Leave a Comment End -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
